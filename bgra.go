@@ -23,8 +23,8 @@ func (i *BGRA) At(x, y int) color.Color {
 	}
 
 	n := i.PixOffset(x, y)
-	pix := i.Pix[n:]
-	return color.RGBA{pix[2], pix[1], pix[0], pix[3]}
+	//	pix := i.Pix[n:]
+	return color.RGBA{i.Pix[n+2], i.Pix[n+1], i.Pix[n+0], i.Pix[n+3]}
 }
 
 func (i *BGRA) Set(x, y int, c color.Color) {
@@ -37,12 +37,12 @@ func (i *BGRA) SetRGBA(x, y int, c color.RGBA) {
 	}
 
 	n := i.PixOffset(x, y)
-	pix := i.Pix[n:]
+	//pix := i.Pix[n:]
 
-	pix[0] = c.B
-	pix[1] = c.G
-	pix[2] = c.R
-	pix[3] = c.A
+	i.Pix[n+0] = c.B
+	i.Pix[n+1] = c.G
+	i.Pix[n+2] = c.R
+	i.Pix[n+3] = c.A
 }
 
 func (i *BGRA) PixOffset(x, y int) int {
